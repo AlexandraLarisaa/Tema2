@@ -30,7 +30,7 @@ import java.awt.image.BufferedImage;
 public class ListController implements Initializable {
 
     private Map<String, ArrayList<Location>> locations;
-    private String apiKey = "d2760c0b8ea18c199892b4d1a3bb8c1f";
+    private String apiKey = "c50370646b59dcb6bb4dfa2622a8a900";
 
     private String currentCity;
     @FXML
