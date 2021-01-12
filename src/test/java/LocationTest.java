@@ -1,6 +1,5 @@
-package ro.mta.se.lab.model;
-
 import org.junit.*;
+import ro.mta.se.lab.model.Location;
 
 public class LocationTest {
     private Location location;
