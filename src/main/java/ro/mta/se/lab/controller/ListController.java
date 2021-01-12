@@ -106,7 +106,6 @@ public class ListController implements Initializable {
             conn.setRequestMethod("GET");
             conn.connect();
 
-            //Getting the response code
             int responsecode = conn.getResponseCode();
 
             if (responsecode != 200) {
@@ -116,12 +115,9 @@ public class ListController implements Initializable {
                 String jsonBuffer = "";
                 Scanner scanner = new Scanner(url.openStream());
 
-                //Write all the JSON data into a string using a scanner
                 while (scanner.hasNext()) {
                     jsonBuffer += scanner.nextLine();
                 }
-
-                //Close the scanner
                 scanner.close();
                 JSONParser parse = new JSONParser();
                 JSONObject json_obj = (JSONObject) parse.parse(jsonBuffer);
