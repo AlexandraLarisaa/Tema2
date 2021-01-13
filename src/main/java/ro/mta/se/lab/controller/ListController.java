@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import ro.mta.se.lab.model.Location;
+import ro.mta.se.lab.model.WeatherInfoClass;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -27,12 +28,20 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * @author Orăș Alexandra
+ *
+ * In această clasă sunt implementate funcțiile
+ * de selectare a țării si orașului si totodată
+ * este folosit API-ului pentru aflarea detaliilor meteo.
+ */
 public class ListController implements Initializable {
 
     private Map<String, ArrayList<Location>> locations;
     private String apiKey = "c50370646b59dcb6bb4dfa2622a8a900";
 
     private String currentCity;
+    private String weatherDescription;
     @FXML
     public ComboBox<String> chb_country;
     @FXML
@@ -125,7 +134,8 @@ public class ListController implements Initializable {
                 String icon = "";
                 for (int i = 0; i < weather.size(); i++) {
                     JSONObject weather_i = (JSONObject) weather.get(i);
-                    description.setText(weather_i.get("main").toString());
+                    weatherDescription = weather_i.get("main").toString();
+                    //description.setText(weather_i.get("main").toString());
                     icon = weather_i.get("icon").toString();
                 }
                 System.out.println(icon);
@@ -136,8 +146,7 @@ public class ListController implements Initializable {
                 _grade -= 273.15;
 
                 System.out.println(df.format(_grade));
-                grade.setText(String.valueOf(df.format(_grade)));
-                celsius.setVisible(true);
+
 
                 Long unixtime = (Long) json_obj.get("dt");
                 Long timezone = (Long) json_obj.get("timezone");
@@ -157,7 +166,7 @@ public class ListController implements Initializable {
                 jdf.setTimeZone(TimeZone.getTimeZone("GMT" + type + getTimeZone));
                 String java_date = jdf.format(date);
 
-                time.setText(java_date);
+
 
                 URL url_img = new URL("http://openweathermap.org/img/wn/" + icon + "@2x.png");
                 System.out.println("http://openweathermap.org/img/wn/" + icon + "@2x.png");
@@ -172,22 +181,31 @@ public class ListController implements Initializable {
                 out.close();
 
                 Image img = new Image("file:" + icon + ".png");
-                weatherImage.setImage(img);
 
                 JSONObject clouds = (JSONObject) json_obj.get("clouds");
                 JSONObject wind_obj = (JSONObject) json_obj.get("wind");
                 System.out.println(clouds.get("all"));
                 System.out.println(main.get("humidity"));
 
+
                 humidity.setVisible(true);
                 wind.setVisible(true);
                 precipitation.setVisible(true);
 
-                humidity.setText("Humidity: " + main.get("humidity") + "%");
-                wind.setText("Wind: " + wind_obj.get("speed") + " km/h");
-                precipitation.setText("Precipitation: " + clouds.get("all") + "%");
+                grade.setText(String.valueOf(df.format(_grade)));
+                celsius.setVisible(true);
+                time.setText(java_date);
+                weatherImage.setImage(img);
 
+                //description.setText(weatherDescription);
+                //humidity.setText("Humidity: " + main.get("humidity") + "%");
+                //wind.setText("Wind: " + wind_obj.get("speed") + " km/h");
+                //precipitation.setText("Precipitation: " + clouds.get("all") + "%");
 
+                String humidityString = "Humidity: " + main.get("humidity") + "%";
+                String windString = "Wind: " + wind_obj.get("speed") + " km/h";
+                String precipitationString = "Precipitation: " + clouds.get("all") + "%";
+                showWeatherInfo(chb_city.getValue(), weatherDescription, humidityString, precipitationString, windString);
             }
 
         } catch (Exception e) {
@@ -195,8 +213,27 @@ public class ListController implements Initializable {
         }
     }
 
+    @FXML
+    public void showWeatherInfo(String cityName1, String description1, String precipitation1, String humidity1, String wind1){
+        WeatherInfoClass weatherData = new WeatherInfoClass(cityName1, description1, humidity1, precipitation1, wind1);
+
+        description.setText(description1);
+        humidity.setText(humidity1);
+        wind.setText(wind1);
+        precipitation.setText(precipitation1);
+
+    }
+
+
+
     public ListController(Map<String, ArrayList<Location>> locations) {
         this.locations = locations;
+    }
+
+    public String getDescriptionInfo(String cityName1, String description1, String precipitation1, String humidity1, String wind1){
+        WeatherInfoClass weatherInstance = new WeatherInfoClass(cityName1, description1, humidity1, precipitation1, wind1);
+
+        return weatherInstance.getDescription();
     }
 
 

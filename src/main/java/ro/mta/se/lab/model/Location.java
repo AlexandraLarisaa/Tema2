@@ -2,6 +2,12 @@ package ro.mta.se.lab.model;
 
 import javafx.beans.property.StringProperty;
 
+/**
+ * @author Orăș Alexandra
+ *
+ * Aceasta clasă reține detaliile unei locații.
+ * 
+ */
 public class Location {
     private String country;
     private String city;
