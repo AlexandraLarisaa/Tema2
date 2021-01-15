@@ -7,6 +7,7 @@
   
 ## Uilizare Aplicație :question:
 Să presupunem că doriți să solicitați informații meteo folosind numele țării, atunci ar trebui să utilizați:
+
 <code> URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + chb_city.getValue() + "&appid=" + apiKey);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -14,3 +15,4 @@ Să presupunem că doriți să solicitați informații meteo folosind numele ț�
             
             
  Se selectează țara si orașul ale căror detalii meteo dorim să le aflăm. Aplicația va afișa informațiile dorite, imbrăcate intr-un design corespunzător si plăcut ochiului. 
+ 
