@@ -10,4 +10,4 @@ Să presupunem că doriți să solicitați informații meteo folosind numele ț�
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect(); </code>
- 
+ Se selectează țara si orașul ale căror detalii meteo dorim să le aflăm. Aplicația va afișa informațiile dorite, imbrăcate intr-un design corespunzător si plăcut ochiului.
