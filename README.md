@@ -17,8 +17,6 @@ Să presupunem că doriți să solicitați informații meteo folosind numele ț�
  Se selectează țara si orașul ale căror detalii meteo dorim să le aflăm. Aplicația va afișa informațiile dorite, imbrăcate intr-un design corespunzător si plăcut ochiului. 
  
  ## Dependințe Aplicație :lock_with_ink_pen:
- 
- Aplicatia WeatherApp foloseste urmatoarele librarii si framework-uri:
 
 - [JUnit-4.13.1][1]
 - [Json-simple-1.1.1][2]
