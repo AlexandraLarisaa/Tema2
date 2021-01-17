@@ -16,3 +16,17 @@ Să presupunem că doriți să solicitați informații meteo folosind numele ț�
             
  Se selectează țara si orașul ale căror detalii meteo dorim să le aflăm. Aplicația va afișa informațiile dorite, imbrăcate intr-un design corespunzător si plăcut ochiului. 
  
+ ## Dependințe Aplicație :lock_with_ink_pen:
+ 
+ Aplicatia WeatherApp foloseste urmatoarele librarii si framework-uri:
+
+- [JUnit-4.13.1][1]
+- [Json-simple-1.1.1][2]
+- [mockito][3]
+- [hamcrest-core-1.3][4]
+
+[1]: https://search.maven.org/search?q=g:junit%20AND%20a:junit
+[2]: https://code.google.com/archive/p/json-simple/downloads
+[3]: https://github.com/mockito/mockito
+[4]: https://search.maven.org/artifact/org.hamcrest/hamcrest-core/1.3/jar
+ 
